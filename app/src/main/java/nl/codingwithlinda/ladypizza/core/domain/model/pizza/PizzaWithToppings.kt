@@ -10,8 +10,6 @@ class PizzaWithToppings(
 
     override val id: String
         get() = pizza.id + toppings.joinToString()
-    override val name: String
-        get() = pizza.name
 
     private val toppings = mutableListOf<ExtraTopping>()
 

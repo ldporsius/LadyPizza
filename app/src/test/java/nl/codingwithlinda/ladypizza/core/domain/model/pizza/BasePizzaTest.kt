@@ -49,11 +49,5 @@ class BasePizzaTest {
         assertEquals(10.0, total2, 0.0)
         assertEquals(5.0, totalDollars, 0.0)
     }
-    @Test
-    fun `test margherita pizza - total ingredients is correct`() {
-        val pizza = PizzaFactory.menu.first()
-        val ingredients = pizza.description()
-        assertEquals("Tomato sauce, Mozzarella cheese, Basil, olive oil".lowercase(), ingredients.lowercase())
 
-    }
 }

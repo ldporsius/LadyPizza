@@ -5,7 +5,6 @@ import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 
 class Pizza(
     override val id: String,
-    override val name: String,
 ): Product {
 
     private var mPrice: Double = 0.0
@@ -20,9 +19,6 @@ class Pizza(
         toppings.remove(topping)
     }
 
-    fun description(): String {
-        return toppings.joinToString { it.name }
-    }
 
     fun getPrice(productPricing: ProductPricing): Double{
         return productPricing.getPrice(this.mPrice)

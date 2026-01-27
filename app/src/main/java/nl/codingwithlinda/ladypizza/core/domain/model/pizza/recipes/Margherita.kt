@@ -8,9 +8,8 @@ import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 
 class Margherita(){
     val id: String = "margherita"
-    val name: String = "Margherita"
     fun createPizza(): Pizza{
-        val pizza = Pizza(id, name)
+        val pizza = Pizza(id,)
         return pizza.apply {
             addTopping(tomatoSauce)
             addTopping(mozzarellaCheese)
