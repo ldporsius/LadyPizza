@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">LadyPizza</string>
+    <string name="tomato_sauce">Tomato sauce</string>
+    <string name="mozzarella_cheese">Mozzarella cheese</string>
+    <string name="basil">Basil</string>
+    <string name="olive_oil">Olive oil</string>
 </resources>

@@ -11,6 +11,8 @@ class Pizza(
 
     private val toppings: MutableList<Product> = mutableListOf()
 
+    fun toppings(): List<Product> = toppings.toList()
+
     fun addTopping(topping: Product) {
         toppings.add(topping)
     }

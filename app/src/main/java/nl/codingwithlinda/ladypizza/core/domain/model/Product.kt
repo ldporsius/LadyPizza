@@ -5,7 +5,6 @@ import nl.codingwithlinda.ladypizza.design.util.UiText
 
 interface Product {
     val id: String
-
 }
 interface ProductWithPricing: Product {
     override val id: String

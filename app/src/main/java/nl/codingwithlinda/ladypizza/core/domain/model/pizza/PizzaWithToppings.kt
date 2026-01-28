@@ -13,6 +13,8 @@ class PizzaWithToppings(
 
     private val toppings = mutableListOf<ExtraTopping>()
 
+    fun extraToppingsUsed() = toppings.toList()
+
     fun addExtraTopping(topping: ExtraTopping) : PizzaWithToppings{
         this.toppings.add(topping)
         return this

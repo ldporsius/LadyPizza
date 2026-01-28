@@ -1,7 +1,6 @@
 package nl.codingwithlinda.ladypizza.core.domain.model.pizza
 
 import nl.codingwithlinda.ladypizza.core.data.PizzaFactory
-import nl.codingwithlinda.ladypizza.core.domain.model.pizza.recipes.Margherita
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import org.junit.After
 import org.junit.Assert.assertEquals
