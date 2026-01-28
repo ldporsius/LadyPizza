@@ -20,6 +20,9 @@ class Margherita() : PizzaUi( "margherita"){
         oliveOil
     )
 
+    override fun name(): UiText = UiText.DynamicText("Margherita")
+
+
 
     fun createPizza(): PizzaUi{
         return this.apply {
@@ -37,5 +40,6 @@ class Margherita() : PizzaUi( "margherita"){
             it.toUi()
         }
     }
+
 }
 

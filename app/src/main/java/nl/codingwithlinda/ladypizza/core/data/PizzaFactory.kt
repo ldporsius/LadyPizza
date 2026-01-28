@@ -9,7 +9,7 @@ import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 
 abstract class PizzaFactory {
 
-    open val productPricing = EuroProductPricing()
+    //open val productPricing = EuroProductPricing()
 
 
     fun addExtraTopping(pizza: Pizza, topping: ExtraTopping): PizzaWithToppings{

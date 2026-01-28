@@ -12,7 +12,7 @@ class PizzaFactoryUi: PizzaFactory() {
     }
 
     fun create(){
-        val margherita = Margherita().createPizza().apply { setPrice(8.99, productPricing) }
+        val margherita = Margherita().createPizza().apply { setPrice(8.99) }
         menu.add(margherita)
     }
 }

@@ -1,6 +1,6 @@
 package nl.codingwithlinda.ladypizza.core.domain.model.prices
 
-interface ProductPricing {
+sealed interface ProductPricing {
 
     fun setPrice(price: Double): Double
 

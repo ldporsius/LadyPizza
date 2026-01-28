@@ -3,11 +3,13 @@ package nl.codingwithlinda.ladypizza.features.menu.presentation
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,6 +20,8 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
+import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
 import nl.codingwithlinda.ladypizza.design.util.asString
 import nl.codingwithlinda.ladypizza.design.util.toImage
@@ -37,6 +41,8 @@ fun MenuListScreen(
             }
         }
     )
+    val productPricing: ProductPricing = menuViewModel.productPricing(Currency.EURO)
+
     Box(modifier = modifier
         .safeContentPadding()
     ) {
@@ -50,9 +56,13 @@ fun MenuListScreen(
                         bitmap = pizza.image.toImage(context).toBitmap(200, 200).asImageBitmap(),
                         contentDescription = null
                     )
-                    Text(pizza.description().joinToString {
-                        it.asString(context)
-                    })
+                    Column {
+                        Text(pizza.name().asString(context), style = MaterialTheme.typography.titleLarge)
+                        Text(pizza.description().joinToString {
+                            it.asString(context)
+                        })
+                        Text(pizza.price(productPricing).asString(context))
+                    }
                 }
             }
         }

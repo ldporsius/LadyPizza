@@ -17,7 +17,7 @@ class BasePizzaTest {
     lateinit var pizza: Pizza
     @Before
     fun setUp() {
-       pizza = Margherita().createPizza().apply { setPrice(8.99, euroPricing) }
+       pizza = Margherita().createPizza().apply { setPrice(8.99,) }
     }
     @After
     fun tearDown(){
@@ -35,7 +35,7 @@ class BasePizzaTest {
         
         val total = pizza.getPrice(euroPricing)
         assertEquals(8.99, total, 0.0)
-        pizza.setPrice(12.99, euroPricing)
+        pizza.setPrice(12.99,)
         val total2 = pizza.getPrice(euroPricing)
         assertEquals(12.99, total2, 0.0)
     }
@@ -44,7 +44,7 @@ class BasePizzaTest {
        
         val total = pizza.getPrice(euroPricing)
         assertEquals(8.99, total, 0.0)
-        pizza.setPrice(10.0, dollarPricing)
+        pizza.setPrice(10.0, )
         val total2 = pizza.getPrice(euroPricing)
         val totalDollars = pizza.getPrice(dollarPricing)
         assertEquals(10.0, total2, 0.0)

@@ -26,8 +26,8 @@ abstract class Pizza(
         return productPricing.getPrice(this.mPrice)
     }
 
-    fun setPrice(price: Double, productPricing: ProductPricing){
-        mPrice = productPricing.setPrice(price)
+    fun setPrice(price: Double){
+        mPrice = price
     }
 
 }
