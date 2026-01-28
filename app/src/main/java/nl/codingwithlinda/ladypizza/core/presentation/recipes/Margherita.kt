@@ -1,27 +1,41 @@
 package nl.codingwithlinda.ladypizza.core.presentation.recipes
 
+import nl.codingwithlinda.ladypizza.R
+import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
+import nl.codingwithlinda.ladypizza.core.presentation.ingredients.Ingredient
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.basil
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.mozzarellaCheese
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.oliveOil
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.tomatoSauce
-import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaUi
+import nl.codingwithlinda.ladypizza.design.util.UiImage
+import nl.codingwithlinda.ladypizza.design.util.UiText
 
-class Margherita(){
-    val id: String = "margherita"
-    val pizza = Pizza(id,)
-    fun createPizza(): Pizza{
+class Margherita() : PizzaUi( "margherita"){
 
-        return pizza.apply {
-            addTopping(tomatoSauce)
-            addTopping(mozzarellaCheese)
-            addTopping(basil)
-            addTopping(oliveOil)
+    private val ingredients: List<Ingredient> = mutableListOf(
+        tomatoSauce,
+        mozzarellaCheese,
+        basil,
+        oliveOil
+    )
+
+
+    fun createPizza(): PizzaUi{
+        return this.apply {
+            ingredients.onEach {
+                addTopping(it)
+            }
         }
     }
 
-    fun description(): String{
-        pizza.toppings()
-        return "Tomato sauce, mozzarella cheese, basil, olive oil"
+    override val image: UiImage
+        get() = UiImage.ResourceImage(R.drawable.ic_launcher_foreground)
+
+    override fun description(): List<UiText>{
+       return this.ingredients.map {
+            it.toUi()
+        }
     }
 }
 

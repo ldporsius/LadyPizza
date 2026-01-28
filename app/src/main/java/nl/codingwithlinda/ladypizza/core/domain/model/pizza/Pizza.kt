@@ -3,7 +3,7 @@ package nl.codingwithlinda.ladypizza.core.domain.model.pizza
 import nl.codingwithlinda.ladypizza.core.domain.model.Product
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 
-class Pizza(
+abstract class Pizza(
     override val id: String,
 ): Product {
 

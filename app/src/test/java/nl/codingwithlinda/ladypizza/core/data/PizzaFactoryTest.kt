@@ -2,6 +2,8 @@ package nl.codingwithlinda.ladypizza.core.data
 
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
+import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -9,24 +11,26 @@ import org.junit.Test
 
 class PizzaFactoryTest {
 
-    val productPricing = PizzaFactory.productPricing
+    val productPricing = EuroProductPricing()
     val dollarPricing = DollarProductPricing(.5)
+    lateinit var pizzaFactory: PizzaFactoryUi
 
     @Before
     fun setUp() {
-        PizzaFactory.create()
+       pizzaFactory = PizzaFactoryUi()
+        pizzaFactory.create()
     }
 
     @After
     fun tearDown() {
-        PizzaFactory.create()
+       pizzaFactory.erase()
     }
 
     @Test
     fun `test create pizza with extra cheese - calculate total costs`(){
-        val pizza = PizzaFactory.menu.first()
+        val pizza = pizzaFactory.menu.first()
         val extra = extraCheese
-        val pizzaXtra = PizzaFactory.addExtraTopping(pizza, extra)
+        val pizzaXtra = pizzaFactory.addExtraTopping(pizza, extra)
 
         val total = pizzaXtra.totalPrice(productPricing)
         assertEquals(9.99, total, 0.0)
@@ -34,9 +38,9 @@ class PizzaFactoryTest {
 
     @Test
     fun `test create pizza with extra cheese - calculate total costs in dollars`(){
-        val pizza = PizzaFactory.menu.first()
+        val pizza = pizzaFactory.menu.first()
         val extra = extraCheese
-        val pizzaXtra = PizzaFactory.addExtraTopping(pizza, extra)
+        val pizzaXtra = pizzaFactory.addExtraTopping(pizza, extra)
 
         val total = pizzaXtra.totalPrice(dollarPricing)
         assertEquals(9.99 * .5, total, 0.0)

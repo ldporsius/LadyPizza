@@ -7,21 +7,9 @@ import nl.codingwithlinda.ladypizza.core.presentation.recipes.Margherita
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 
 
-object PizzaFactory {
+abstract class PizzaFactory {
 
-    val productPricing = EuroProductPricing()
-
-
-    val menu = mutableListOf<Pizza>()
-
-    fun erase(){
-        menu.clear()
-    }
-
-    fun create(){
-        val margherita = Margherita().createPizza().apply { setPrice(8.99, productPricing) }
-        menu.add(margherita)
-    }
+    open val productPricing = EuroProductPricing()
 
 
     fun addExtraTopping(pizza: Pizza, topping: ExtraTopping): PizzaWithToppings{

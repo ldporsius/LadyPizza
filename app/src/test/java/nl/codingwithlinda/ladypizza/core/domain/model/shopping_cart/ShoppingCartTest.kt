@@ -2,16 +2,17 @@ package nl.codingwithlinda.ladypizza.core.domain.model.shopping_cart
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
-import nl.codingwithlinda.ladypizza.core.data.PizzaFactory
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
 import org.junit.Before
 import org.junit.Test
 
 class ShoppingCartTest {
 
+    lateinit var PizzaFactory: PizzaFactoryUi
     lateinit var pizza: Pizza
     lateinit var shoppingCart: ShoppingCart
 
@@ -19,6 +20,7 @@ class ShoppingCartTest {
 
     @Before
     fun setup(){
+        PizzaFactory = PizzaFactoryUi()
         PizzaFactory.create()
         pizza = PizzaFactory.menu.first()
         shoppingCart = ShoppingCart(pricing)
