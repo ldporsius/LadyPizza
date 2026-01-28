@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
+
 }
 
 android {
@@ -49,6 +51,15 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //compose viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
+
+    //navigation3
+    implementation("androidx.navigation3:navigation3-runtime-android:1.0.0")
+    implementation("androidx.navigation3:navigation3-ui-android:1.0.0")
+    implementation(libs.kotlin.serialization)
+
 
     testImplementation(libs.junit)
     testImplementation("com.willowtreeapps.assertk:assertk:0.28.1")
