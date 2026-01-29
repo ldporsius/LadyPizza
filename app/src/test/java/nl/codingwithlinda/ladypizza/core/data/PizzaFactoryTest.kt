@@ -2,11 +2,15 @@ package nl.codingwithlinda.ladypizza.core.data
 
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import nl.codingwithlinda.ladypizza.core.data.repo.PizzaDto
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraMozzarellaCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaUi
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.sorting.PizzaSortOrder
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.sorting.SortPizzaOpinionated
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -14,12 +18,15 @@ import org.junit.Test
 
 class PizzaFactoryTest {
 
-    val productPricing = EuroProductPricing()
-    val dollarPricing = DollarProductPricing(.5)
-    lateinit var pizzaFactory: PizzaFactoryUi
+    private val productPricing = EuroProductPricing()
+    private val dollarPricing = DollarProductPricing(.5)
+    private lateinit var pizzaFactory: PizzaFactoryUi
 
-    val dtos = listOf(
-        PizzaDto(id = "margherita", ingredients = listOf("mozzarellaCheese", "tomatoSauce"))
+
+    private val dtos = listOf(
+        PizzaDto(id = "pepperoni", ingredients = listOf("mozzarella_cheese", "pepperoni")),
+        PizzaDto(id = "margherita", ingredients = listOf("mozzarella_cheese", "tomato_sauce")),
+        PizzaDto(id = "bbq_chicken", ingredients = listOf("mozzarella_cheese", "bbq_sauce")),
     )
 
 
@@ -56,6 +63,18 @@ class PizzaFactoryTest {
 
         val total = pizzaXtra.totalPrice(dollarPricing)
         assertEquals(9.99 * .5, total, 0.0)
+    }
+
+    @Test
+    fun `test pizza list is sorted as intended`() = runTest {
+
+        val pizzaUi = pizzaFactory.menuObservable.first()
+        val sortingAlghorithm : PizzaSortOrder<PizzaUi> = SortPizzaOpinionated(pizzaUi)
+        val sortedPizzas = sortingAlghorithm.sortBy()
+        assertEquals("margherita", sortedPizzas.first().id())
+        assertEquals("pepperoni", sortedPizzas[1].id())
+        assertEquals("bbq_chicken", sortedPizzas[2].id())
+
     }
 
 

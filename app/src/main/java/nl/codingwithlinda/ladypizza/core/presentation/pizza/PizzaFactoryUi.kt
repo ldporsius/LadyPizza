@@ -23,7 +23,7 @@ class PizzaFactoryUi(
         menu.clear()
     }
 
-    suspend fun create(pizzaDto: PizzaDto){
+    fun create(pizzaDto: PizzaDto){
 
         val pizza = pizzaFromDto(pizzaDto)
         println("-- PizzaFactoryUi created pizza from dto: ${pizza?.id()}")
@@ -36,7 +36,7 @@ class PizzaFactoryUi(
 
     }
 
-    suspend fun pizzaFromDto(dto: PizzaDto): PizzaUi?{
+    private fun pizzaFromDto(dto: PizzaDto): PizzaUi?{
         return MyPizza(
                     pizza = Pizza(
                         id = dto.id

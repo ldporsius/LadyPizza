@@ -14,7 +14,7 @@ class MyPizza(
     override val pizza: Pizza
 ) : PizzaUi( pizza){
 
-    private val ingredients: List<IngredientUi> = pizza.toppings().mapNotNull {
+    private val ingredients: List<IngredientUi> = pizza.toppings().map {
         val uitext = it.id.toIngredientUi()
         Ingredient(
             id = it.id,
