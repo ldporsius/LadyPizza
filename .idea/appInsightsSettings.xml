@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="nl.codingwithlinda.ladypizza" />
+                  <option name="mobileSdkAppId" value="1:571511016674:android:14d77911b5ecf402f622bb" />
+                  <option name="projectId" value="ladypizza-c0bd7" />
+                  <option name="projectNumber" value="571511016674" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

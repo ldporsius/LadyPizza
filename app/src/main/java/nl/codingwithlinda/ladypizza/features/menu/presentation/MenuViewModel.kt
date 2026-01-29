@@ -1,21 +1,32 @@
 package nl.codingwithlinda.ladypizza.features.menu.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
+import nl.codingwithlinda.ladypizza.core.domain.repo.PizzaRepository
 import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
 
 class MenuViewModel(
-    private val pizzaFactory: PizzaFactoryUi
+    val pizzaRepo : PizzaRepository
 ): ViewModel() {
 
 
+    val pizzaFactory: PizzaFactoryUi = PizzaFactoryUi()
+
+    val menu = pizzaFactory.menuObservable
     init {
-        pizzaFactory.create()
+
+        viewModelScope.launch {
+          pizzaRepo.loadPizzas().onEach {
+              pizzaFactory.create(it)
+          }
+        }
     }
-    fun menu() = pizzaFactory.menu.toList()
+
 
     fun exchangeRate(currency: Currency): Double =
         when(currency){

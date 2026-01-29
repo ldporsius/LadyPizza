@@ -1,7 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="tomato_sauce">Tomatensaus</string>
+<string name="margherita">Margherita</string>
+<string name="bbq_chicken">BBQ Kip</string>
+
+
     <string name="mozzarella_cheese">Mozzarella</string>
+    <string name="gorgonzola">Gorgonzola</string>
+    <string name="parmesan">Parmesaanse kaas</string>
+    <string name="ricotta">Ricotta</string>
+
+
+    <string name="tomato_sauce">Tomatensaus</string>
+    <string name="bbq_sauce">BBQ saus</string>
+    <string name="cream">Roomsaus</string>
+
     <string name="basil">Basilicum</string>
+    <string name="pineapple">Ananas</string>
+    <string name="onion">Ui</string>
+    <string name="corn">Mais</string>
+    <string name="mushrooms">Champignons</string>
+    <string name="olives">Olijven</string>
+    <string name="bell_pepper">Paprika</string>
+    <string name="jalapenos">Jalapenos</string>
+    <string name="red_chili_pepper">Chili peper</string>
+    <string name="garlic">Knoflook</string>
+    <string name="parsley">Peterselie</string>
+
     <string name="olive_oil">Olijfolie</string>
+    <string name="truffle_oil">Truffelolie</string>
+
+<!--    //meat//-->
+    <string name="pepperoni">Pepperoni</string>
+    <string name="ham">Ham</string>
+    <string name="grilled_chicken">Gegrilde kip</string>
+    <string name="bacon">Bacon</string>
+    <string name="sausage">Saucijs</string>
+    <string name="spicey_salami">Pittige salami</string>
+
+<!--    //fish//-->
+    <string name="shrimp">Garnalen</string>
+    <string name="mussels">Mosselen</string>
+    <string name="squid">Inktvis</string>
+
+    <string-array name="pizza_recipes">
+        <item>margherita</item>
+        <item>bbq_chicken</item>
+    </string-array>
+
+    <string-array name="ingredients">
+        //cheese//
+        <item>mozzarella_cheese</item>
+        <item>gorgonzola</item>
+        <item>parmesan</item>
+        <item>ricotta</item>
+
+        //sauce//
+        <item>tomato_sauce</item>
+        <item>bbq_sauce</item>
+        <item>cream</item>
+
+        //veggies//
+        <item>basil</item>
+        <item>pineapple</item>
+        <item>onion</item>
+        <item>corn</item>
+        <item>mushrooms</item>
+        <item>olives</item>
+        <item>bell_pepper</item>
+        <item>jalapenos</item>
+        <item>red_chili_pepper</item>
+        <item>garlic</item>
+        <item>parsley</item>
+
+        //oil//
+        <item>olive_oil</item>
+        <item>truffle_oil</item>
+
+        //meat//
+        <item>pepperoni</item>
+        <item>ham</item>
+        <item>grilled_chicken</item>
+        <item>bacon</item>
+        <item>sausage</item>
+        <item>spicey_salami</item>
+
+        //fish//
+        <item>shrimp</item>
+        <item>mussels</item>
+        <item>squid</item>
+    </string-array>
+
 </resources>

@@ -1,8 +1,12 @@
 package nl.codingwithlinda.ladypizza.design.util
 
-import android.content.Context
-import android.graphics.drawable.Drawable
+import android.graphics.Bitmap
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import coil3.compose.AsyncImage
+import nl.codingwithlinda.ladypizza.core.presentation.image_loader.LocalImageLoader
+import nl.codingwithlinda.ladypizza.core.presentation.image_loader.RemoteImageLoader
 
 sealed interface UiImage {
     data class UrlImage(val url: String) : UiImage
@@ -10,12 +14,17 @@ sealed interface UiImage {
 
 }
 
-fun UiImage.toImage(context: Context): Drawable{
-    when(this){
-        is UiImage.UrlImage -> error("not implemented")
-        is UiImage.ResourceImage -> {
-            return context.resources.getDrawable(resourceId, null)
-        }
+suspend fun UiImage.ResourceImage.toImage(imageLoader: LocalImageLoader): Bitmap?{
+  return imageLoader.load(this.resourceId)
+}
 
-    }
+
+suspend fun UiImage.UrlImage.toImage(imageLoader: RemoteImageLoader): Bitmap? {
+    return imageLoader.load(this.url)
+}
+
+@Composable
+fun UiImage.UrlImage.ToImage(modifier: Modifier = Modifier) {
+    AsyncImage(this.url, contentDescription = null, modifier = modifier)
+
 }

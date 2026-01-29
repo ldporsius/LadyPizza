@@ -2,7 +2,8 @@ package nl.codingwithlinda.ladypizza.core.domain.model.pizza
 
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
-import nl.codingwithlinda.ladypizza.core.presentation.recipes.Margherita
+import nl.codingwithlinda.ladypizza.core.presentation.recipes.MyPizza
+import nl.codingwithlinda.ladypizza.design.util.UiText
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -13,11 +14,11 @@ class BasePizzaTest {
     val euroPricing = EuroProductPricing()
     val dollarPricing = DollarProductPricing(.5)
 
-
     lateinit var pizza: Pizza
     @Before
     fun setUp() {
-       pizza = Margherita().createPizza().apply { setPrice(8.99,) }
+       pizza =  Pizza(id = "margherita").apply { setPrice(8.99,) }
+
     }
     @After
     fun tearDown(){

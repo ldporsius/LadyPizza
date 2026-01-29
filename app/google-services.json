@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "571511016674",
+    "project_id": "ladypizza-c0bd7",
+    "storage_bucket": "ladypizza-c0bd7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571511016674:android:14d77911b5ecf402f622bb",
+        "android_client_info": {
+          "package_name": "nl.codingwithlinda.ladypizza"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTeG-U05bKr7WYrffQ5RAclrXksFYiRSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

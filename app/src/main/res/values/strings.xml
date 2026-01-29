@@ -1,7 +1,99 @@
 <resources>
-    <string name="app_name">LadyPizza</string>
-    <string name="tomato_sauce">Tomato sauce</string>
+    <string name="app_name" translatable="false">LadyPizza</string>
+
+<!--  recipes  -->
+    <string name="margherita">Margherita</string>
+    <string name="bbq_chicken">BBQ Chicken</string>
+
+
+<!--//////////////////////////////////////////////////////-->
     <string name="mozzarella_cheese">Mozzarella cheese</string>
-    <string name="basil">Basil</string>
+    <string name="gorgonzola">Gorgonzola</string>
+    <string name="parmesan">Parmesan cheese</string>
+    <string name="ricotta">Ricotta</string>
+
+
+    <string name="tomato_sauce">Tomato sauce</string>
+    <string name="bbq_sauce">BBQ sauce</string>
+    <string name="cream">Cream</string>
+
+    <string name="basil">Fresh Basil</string>
+    <string name="pineapple">Pineapple</string>
+    <string name="onion">Onion</string>
+    <string name="corn">Corn</string>
+    <string name="mushrooms">Mushrooms</string>
+    <string name="olives">Olives</string>
+    <string name="bell_pepper">Bell pepper</string>
+    <string name="jalapenos">Jalapenos</string>
+    <string name="red_chili_pepper">Red chilly pepper</string>
+    <string name="garlic">Garlic</string>
+    <string name="parsley">Parsley</string>
+
     <string name="olive_oil">Olive oil</string>
+    <string name="truffle_oil">Truffle oil</string>
+
+<!--    //meat//-->
+    <string name="pepperoni">Pepperoni</string>
+    <string name="ham">Ham</string>
+    <string name="grilled_chicken">Grilled chicken</string>
+    <string name="bacon">Bacon</string>
+    <string name="sausage">Sausage</string>
+    <string name="spicey_salami">Spicey salami</string>
+
+<!--    //fish//-->
+    <string name="shrimp">Shrimp</string>
+    <string name="mussels">Mussels</string>
+    <string name="squid">Squid</string>
+
+    <!--    /////////////////////////////////////////////////////-->
+
+    <string-array name="pizza_recipes">
+        <item>margherita</item>
+        <item>bbq_chicken</item>
+    </string-array>
+
+
+    <string-array name="ingredients">
+       //cheese//
+        <item>mozzarella_cheese</item>
+        <item>gorgonzola</item>
+        <item>parmesan</item>
+        <item>ricotta</item>
+
+        //sauce//
+        <item>tomato_sauce</item>
+        <item>bbq_sauce</item>
+        <item>cream</item>
+
+        //veggies//
+        <item>basil</item>
+        <item>pineapple</item>
+        <item>onion</item>
+        <item>corn</item>
+        <item>mushrooms</item>
+        <item>olives</item>
+        <item>bell_pepper</item>
+        <item>jalapenos</item>
+        <item>red_chili_pepper</item>
+        <item>garlic</item>
+        <item>parsley</item>
+
+        //oil//
+        <item>olive_oil</item>
+        <item>truffle_oil</item>
+
+        //meat//
+        <item>pepperoni</item>
+        <item>ham</item>
+        <item>grilled_chicken</item>
+        <item>bacon</item>
+        <item>sausage</item>
+        <item>spicey_salami</item>
+
+        //fish//
+        <item>shrimp</item>
+        <item>mussels</item>
+        <item>squid</item>
+
+    </string-array>
 </resources>
