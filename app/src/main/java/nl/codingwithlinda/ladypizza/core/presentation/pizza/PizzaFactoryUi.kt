@@ -5,12 +5,15 @@ import kotlinx.coroutines.flow.update
 import nl.codingwithlinda.ladypizza.R
 import nl.codingwithlinda.ladypizza.core.data.repo.PizzaDto
 import nl.codingwithlinda.ladypizza.core.data.PizzaFactory
+import nl.codingwithlinda.ladypizza.core.data.repo.LocalPriceRepo
 import nl.codingwithlinda.ladypizza.core.data.repo.toIngredient
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
+import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
 import nl.codingwithlinda.ladypizza.core.presentation.recipes.MyPizza
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
 class PizzaFactoryUi(
+    private val priceRepo: PriceRepo = LocalPriceRepo()
 ): PizzaFactory() {
 
     val menuObservable = MutableStateFlow<List<PizzaUi>>(emptyList())
@@ -34,44 +37,21 @@ class PizzaFactoryUi(
     }
 
     suspend fun pizzaFromDto(dto: PizzaDto): PizzaUi?{
-        return when(dto.id){
-            "margherita" -> {
-                val margheritaUrl = dto.image_url
-                MyPizza(
+        return MyPizza(
                     pizza = Pizza(
                         id = dto.id
                     ).apply {
                         dto.ingredients.onEach {
                             addTopping(it.toIngredient())
                         }
-                        setPrice(8.99)
+                        setPrice(priceRepo.getPrice(dto.id))
                     },
                     myname = {
-                        UiText.DynamicText("Margherita")
+                        pizzaNames.getOrElse(dto.id, {UiText.DynamicText(dto.id)})
                     },
-                    imageUrl = margheritaUrl
+                    imageUrl = dto.image_url
                 )
+            }
 
-            }
-            "bbq_chicken" -> {
-                val bbqChickenUrl = dto.image_url
-                MyPizza(
-                    pizza = Pizza(
-                        id = dto.id
-                    ).apply {
-                        dto.ingredients.onEach {
-                            addTopping(it.toIngredient())
-                        }
-                        setPrice(10.99)
-                    },
-                    myname = {
-                        UiText.StringResourceText(R.string.bbq_chicken)
-                    },
-                    imageUrl = bbqChickenUrl
-                )
-            }
-            else -> null
-        }
-    }
 }
 

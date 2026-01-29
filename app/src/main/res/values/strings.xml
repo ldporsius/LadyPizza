@@ -44,6 +44,12 @@
     <string name="shrimp">Shrimp</string>
     <string name="mussels">Mussels</string>
     <string name="squid">Squid</string>
+    <string name="four_cheese">Four cheeses</string>
+    <string name="veggie_delight">Veggie delight</string>
+    <string name="meat_lovers">Meat lovers</string>
+    <string name="spicy_inferno">Spicy inferno</string>
+    <string name="seafood_special">Seafood special</string>
+    <string name="truffle_mushroom">Truffle mushroom</string>
 
     <!--    /////////////////////////////////////////////////////-->
 
