@@ -21,7 +21,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import nl.codingwithlinda.ladypizza.core.data.drinks.repo.FireStoreDrinksRepo
+import nl.codingwithlinda.ladypizza.core.data.drinks.repo.LocalDrinkPriceRepo
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.FirestorePizzaRepository
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.LocalPizzaPriceRepo
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.design.util.ToImage
@@ -34,17 +37,24 @@ fun MenuListScreen(
     modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
+    val priceRepo = LocalDrinkPriceRepo()
     val pizzaRepo = FirestorePizzaRepository()
+    val drinksRepo = FireStoreDrinksRepo(priceRepo)
 
     val menuViewModel = viewModel<MenuViewModel>(
         factory = viewModelFactory {
             initializer {
-                MenuViewModel(pizzaRepo = pizzaRepo)
+                MenuViewModel(
+                    pizzaRepo = pizzaRepo,
+                    drinksRepo = drinksRepo
+                )
             }
         }
     )
     val productPricing: ProductPricing = menuViewModel.productPricing(Currency.EURO)
     val menu = menuViewModel.menu.collectAsStateWithLifecycle().value
+
+    val drinks = menuViewModel.drinks.collectAsStateWithLifecycle().value
 
     Box(modifier = modifier
         .safeContentPadding()

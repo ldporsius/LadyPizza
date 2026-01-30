@@ -19,7 +19,6 @@ class MyPizza(
 
     }
 
-
     override val image: UiImage
         get() = UiImage.UrlImage(imageUrl)
 

@@ -2,17 +2,15 @@ package nl.codingwithlinda.ladypizza.core.presentation.pizza
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import nl.codingwithlinda.ladypizza.core.data.pizza.repo.PizzaDto
 import nl.codingwithlinda.ladypizza.core.data.pizza.PizzaFactory
-import nl.codingwithlinda.ladypizza.core.data.pizza.repo.LocalPriceRepo
-import nl.codingwithlinda.ladypizza.core.data.pizza.repo.toIngredient
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.LocalPizzaPriceRepo
 import nl.codingwithlinda.ladypizza.core.domain.images.ProductImageBuffer
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
 class PizzaFactoryUi(
-    private val priceRepo: PriceRepo = LocalPriceRepo()
+    private val priceRepo: PriceRepo = LocalPizzaPriceRepo()
 ): PizzaFactory() {
 
     val menuObservable = MutableStateFlow<List<PizzaUi>>(emptyList())
