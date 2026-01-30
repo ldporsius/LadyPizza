@@ -14,23 +14,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import nl.codingwithlinda.ladypizza.core.data.repo.FirestorePizzaRepository
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.FirestorePizzaRepository
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
-import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
 import nl.codingwithlinda.ladypizza.design.util.ToImage
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.asString
-import nl.codingwithlinda.ladypizza.design.util.toImage
 
 @Composable
 fun MenuListScreen(

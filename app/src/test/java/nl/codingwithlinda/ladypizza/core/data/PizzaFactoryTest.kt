@@ -3,7 +3,7 @@ package nl.codingwithlinda.ladypizza.core.data
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import nl.codingwithlinda.ladypizza.core.data.repo.PizzaDto
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.PizzaDto
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraMozzarellaCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing

@@ -1,8 +1,8 @@
 package nl.codingwithlinda.ladypizza.core.domain.repo
 
-import nl.codingwithlinda.ladypizza.core.data.repo.PizzaDto
+import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 
 interface PizzaRepository {
 
-    suspend fun loadPizzas(): List<PizzaDto>
+    suspend fun loadPizzas(): List<Pizza>
 }

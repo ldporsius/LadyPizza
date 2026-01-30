@@ -96,6 +96,6 @@ class ShoppingCartTest {
 
     @Test
     fun `test adding a drink to shopping cart`(){
-        val sevenUp =
+        
     }
 }

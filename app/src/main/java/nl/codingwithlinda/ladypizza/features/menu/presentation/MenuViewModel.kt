@@ -29,7 +29,7 @@ class MenuViewModel(
     init {
         viewModelScope.launch {
           pizzaRepo.loadPizzas().onEach {
-              pizzaFactory.create(it)
+              pizzaFactory.createUiPizza(it)
           }
         }
     }
