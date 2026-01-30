@@ -1,10 +1,9 @@
-package nl.codingwithlinda.ladypizza.core.presentation.recipes
+package nl.codingwithlinda.ladypizza.core.presentation.pizza
 
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.Ingredient
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.IngredientUi
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.toIngredientUi
-import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaUi
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
@@ -37,4 +36,3 @@ class MyPizza(
     }
 
 }
-

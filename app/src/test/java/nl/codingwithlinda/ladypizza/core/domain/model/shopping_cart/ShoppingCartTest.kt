@@ -93,4 +93,9 @@ class ShoppingCartTest {
         shoppingCart.pricing = pricing
         assertThat(shoppingCart.total()).isEqualTo( 11.0 )
     }
+
+    @Test
+    fun `test adding a drink to shopping cart`(){
+        val sevenUp =
+    }
 }

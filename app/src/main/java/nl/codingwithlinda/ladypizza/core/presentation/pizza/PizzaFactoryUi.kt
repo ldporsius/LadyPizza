@@ -9,7 +9,7 @@ import nl.codingwithlinda.ladypizza.core.data.repo.LocalPriceRepo
 import nl.codingwithlinda.ladypizza.core.data.repo.toIngredient
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
-import nl.codingwithlinda.ladypizza.core.presentation.recipes.MyPizza
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.MyPizza
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
 class PizzaFactoryUi(

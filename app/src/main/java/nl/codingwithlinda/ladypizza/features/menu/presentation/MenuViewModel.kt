@@ -21,14 +21,12 @@ class MenuViewModel(
 
     val pizzaFactory: PizzaFactoryUi = PizzaFactoryUi()
 
-
     val menu = pizzaFactory.menuObservable.map {pizzas->
         val sortingStrategy = SortPizzaOpinionated(pizzas)
         sortingStrategy.sortBy()
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
-
         viewModelScope.launch {
           pizzaRepo.loadPizzas().onEach {
               pizzaFactory.create(it)

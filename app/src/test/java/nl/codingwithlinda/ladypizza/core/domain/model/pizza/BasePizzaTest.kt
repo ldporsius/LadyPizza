@@ -2,7 +2,7 @@ package nl.codingwithlinda.ladypizza.core.domain.model.pizza
 
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
-import nl.codingwithlinda.ladypizza.core.presentation.recipes.MyPizza
+import nl.codingwithlinda.ladypizza.core.presentation.pizza.MyPizza
 import nl.codingwithlinda.ladypizza.design.util.UiText
 import org.junit.After
 import org.junit.Assert.assertEquals
