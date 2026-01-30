@@ -31,6 +31,8 @@ import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.design.util.ToImage
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.asString
+import nl.codingwithlinda.ladypizza.features.menu.presentation.components.CardContainer
+import nl.codingwithlinda.ladypizza.features.menu.presentation.components.DrinkCard
 import nl.codingwithlinda.ladypizza.features.menu.presentation.components.PizzaCard
 
 @Composable
@@ -38,7 +40,7 @@ fun MenuListScreen(
     navToDetail: (String) -> Unit,
     modifier: Modifier = Modifier) {
 
-    val context = LocalContext.current
+
     val priceRepo = LocalDrinkPriceRepo()
     val pizzaRepo = FirestorePizzaRepository()
     val drinksRepo = FireStoreDrinksRepo(priceRepo)
@@ -62,38 +64,25 @@ fun MenuListScreen(
         .safeContentPadding()
     ) {
 
-        LazyVerticalGrid(columns = GridCells.Fixed(1)) {
+        LazyVerticalGrid(columns = GridCells.Fixed(1),
+            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp),
+        ) {
             items(menu) { pizza ->
-               PizzaCard(
-                   pizza = pizza,
-                   navToDetail = navToDetail,
-                   productPricing = productPricing
-               )
+              CardContainer {
+                  PizzaCard(
+                      pizza = pizza,
+                      navToDetail = navToDetail,
+                      productPricing = productPricing
+                  )
+              }
             }
             items(drinks) { drink ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { navToDetail(drink.id) }
-                ) {
-                    with(drink.image()){
-                        when(this){
-                            is UiImage.UrlImage -> {
-                                this.ToImage(
-                                    modifier = Modifier.size(200.dp)
-                                )
-                            }
-                            is UiImage.ResourceImage -> {
-                                Image(
-                                    painter = painterResource(id = this.resourceId),
-                                    contentDescription = null
-                                )
-                            }
-                        }
-                    }
-
-                    Text(drink.name().asString(context), style = MaterialTheme.typography.titleLarge)
-
+                CardContainer {
+                    DrinkCard(
+                        drink = drink,
+                        productPricing = productPricing,
+                        navToDetail = navToDetail
+                    )
                 }
             }
         }

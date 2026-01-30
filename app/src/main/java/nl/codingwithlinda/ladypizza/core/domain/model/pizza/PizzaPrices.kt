@@ -1,4 +1,4 @@
-package nl.codingwithlinda.ladypizza.core.domain.model.prices
+package nl.codingwithlinda.ladypizza.core.domain.model.pizza
 
 val pizzaPrices = mapOf<String, Double>(
     "margherita" to 8.99,
