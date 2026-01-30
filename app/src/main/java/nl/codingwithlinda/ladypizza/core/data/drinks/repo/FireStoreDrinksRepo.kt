@@ -3,6 +3,7 @@ package nl.codingwithlinda.ladypizza.core.data.drinks.repo
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import nl.codingwithlinda.ladypizza.core.domain.images.ProductImageBuffer
@@ -24,27 +25,46 @@ class FireStoreDrinksRepo(
             println("succesfully loaded drinks")
         }
 
+    val taskImageUrls = db.collection("drink_image_urls")
+        .get()
+        .addOnFailureListener {
+            it.printStackTrace()
+        }
+        .addOnSuccessListener{
+            println("loaded drink image urls")
+        }
+
     override suspend fun loadDrinks(): List<Drink> {
+        withContext(Dispatchers.IO){
+            launch {
+                taskImageUrls.await().let {
+                    it.documents.map {
+                        it.toObject(DrinkImageDto::class.java)
+                    }.onEach {
+                        it?.let {
+                            ProductImageBuffer.saveXref(
+                                it.id, it.image_url
+                            )
+                        }
+                    }
+                }
+            }
+        }
         return withContext(Dispatchers.IO){
             val result = task.await().let {
                 it.documents.map { snap ->
                     snap.toObject(DrinkDto::class.java)
                 }
             }
-            //side effect: save image urls in object
-            result.onEach {dto ->
-                dto?.run {
-                    ProductImageBuffer.saveXref(this.id, this.image_url)
+            val drinks = result.mapNotNull { dto ->
+                dto?.drink_ids?.map { id ->
+                    Drink(
+                        id = id,
+                        price = priceRepo.getPrice(id)
+                    )
                 }
             }
-            val drinks = result.mapNotNull { dto ->
-                if (dto == null) null
-                else Drink(
-                    id = dto.id,
-                    price = priceRepo.getPrice(dto.id)
-                )
-            }
-            drinks
+            drinks.flatten()
         }
     }
 }

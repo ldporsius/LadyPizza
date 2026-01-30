@@ -36,12 +36,12 @@ class MenuViewModel(
     init {
         viewModelScope.launch {
           pizzaRepo.loadPizzas().onEach {
-              println("loaded pizza with toppings: ${it.toppings()}")
               pizzaFactory.createUiPizza(it)
           }
         }
         viewModelScope.launch {
             drinksRepo.loadDrinks().let {new ->
+                println("loaded drinks $new")
                 drinks.update {
                     new.map {
                         it.toUi()

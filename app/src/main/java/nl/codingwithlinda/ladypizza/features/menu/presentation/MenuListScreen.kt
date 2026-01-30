@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -30,6 +31,7 @@ import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.design.util.ToImage
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.asString
+import nl.codingwithlinda.ladypizza.features.menu.presentation.components.PizzaCard
 
 @Composable
 fun MenuListScreen(
@@ -62,10 +64,19 @@ fun MenuListScreen(
 
         LazyVerticalGrid(columns = GridCells.Fixed(1)) {
             items(menu) { pizza ->
+               PizzaCard(
+                   pizza = pizza,
+                   navToDetail = navToDetail,
+                   productPricing = productPricing
+               )
+            }
+            items(drinks) { drink ->
                 Row(
-                    modifier = Modifier.clickable { navToDetail(pizza.id()) }
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { navToDetail(drink.id) }
                 ) {
-                    with(pizza.image){
+                    with(drink.image()){
                         when(this){
                             is UiImage.UrlImage -> {
                                 this.ToImage(
@@ -80,13 +91,9 @@ fun MenuListScreen(
                             }
                         }
                     }
-                    Column {
-                        Text(pizza.name().asString(context), style = MaterialTheme.typography.titleLarge)
-                        Text(pizza.description().joinToString {
-                            it.asString(context)
-                        })
-                        Text(pizza.price(productPricing).asString(context))
-                    }
+
+                    Text(drink.name().asString(context), style = MaterialTheme.typography.titleLarge)
+
                 }
             }
         }

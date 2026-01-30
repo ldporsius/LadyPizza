@@ -14,7 +14,6 @@ class MyPizza(
 ) : PizzaUi( pizza){
 
     private val ingredients: List<UiText> = pizza.toppings().map {
-        println("MyPizza ${myname()}has topping: ${it.id} ")
         it.id.toIngredientUi()
 
     }
