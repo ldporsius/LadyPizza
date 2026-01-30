@@ -1,6 +1,8 @@
 package nl.codingwithlinda.ladypizza.features.menu.presentation
 
 import app.cash.turbine.test
+import assertk.assertThat
+import assertk.assertions.isNotEmpty
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -39,8 +41,14 @@ class MenuViewModelTest {
     fun `pizzas are added to menu`() = runTest {
        viewModel.menu.test {
 
+           val em0 = awaitItem()
             val em1 = awaitItem()
             assertEquals(2, em1.size)
+
+           val descriptions = em1.map {
+               it.description()
+           }.flatten()
+           assertThat(descriptions).isNotEmpty()
 
            cancelAndIgnoreRemainingEvents()
         }

@@ -13,12 +13,10 @@ class MyPizza(
     override val pizza: Pizza
 ) : PizzaUi( pizza){
 
-    private val ingredients: List<IngredientUi> = pizza.toppings().map {
-        val uitext = it.id.toIngredientUi()
-        Ingredient(
-            id = it.id,
-            toUI = { uitext }
-        )
+    private val ingredients: List<UiText> = pizza.toppings().map {
+        println("MyPizza ${myname()}has topping: ${it.id} ")
+        it.id.toIngredientUi()
+
     }
 
 
@@ -30,9 +28,7 @@ class MyPizza(
     }
 
     override fun description(): List<UiText>{
-       return this.ingredients.map {
-            it.toUi()
-        }
+       return this.ingredients
     }
 
 }

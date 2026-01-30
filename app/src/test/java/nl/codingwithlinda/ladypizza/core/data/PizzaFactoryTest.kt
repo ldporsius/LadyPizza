@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.PizzaDto
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.toDomain
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraMozzarellaCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
@@ -18,7 +19,7 @@ import org.junit.Test
 
 class PizzaFactoryTest {
 
-    private val productPricing = EuroProductPricing()
+    private val euroProductPricing = EuroProductPricing()
     private val dollarPricing = DollarProductPricing(.5)
     private lateinit var pizzaFactory: PizzaFactoryUi
 
@@ -34,8 +35,11 @@ class PizzaFactoryTest {
     fun setUp() {
        pizzaFactory = PizzaFactoryUi()
         runBlocking {
-            dtos.onEach {
-                pizzaFactory.create(it)
+            dtos.map {
+                it.toDomain()
+            }
+                .onEach {
+                pizzaFactory.createUiPizza(it)
             }
         }
     }
@@ -48,21 +52,23 @@ class PizzaFactoryTest {
     @Test
     fun `test create pizza with extra cheese - calculate total costs`() = runBlocking{
         val pizzaUi = pizzaFactory.menuObservable.first().first()
+        val basicPrice = pizzaUi.pizza.getPrice(euroProductPricing)
         val extra = extraMozzarellaCheese
         val pizzaXtra = pizzaFactory.addExtraTopping(pizzaUi.pizza, extra)
 
-        val total = pizzaXtra.totalPrice(productPricing)
-        assertEquals(9.99, total, 0.0)
+        val total = pizzaXtra.totalPrice(euroProductPricing)
+        assertEquals(basicPrice + extra.price, total, 0.0)
     }
 
     @Test
     fun `test create pizza with extra cheese - calculate total costs in dollars`() = runBlocking{
         val pizzaUi = pizzaFactory.menuObservable.first().first()
+        val basicPrice = pizzaUi.pizza.getPrice(euroProductPricing)
         val extra = extraMozzarellaCheese
         val pizzaXtra = pizzaFactory.addExtraTopping(pizzaUi.pizza, extra)
 
         val total = pizzaXtra.totalPrice(dollarPricing)
-        assertEquals(9.99 * .5, total, 0.0)
+        assertEquals((basicPrice + extra.price) * .5, total, 0.0)
     }
 
     @Test

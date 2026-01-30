@@ -29,6 +29,7 @@ class MenuViewModel(
     init {
         viewModelScope.launch {
           pizzaRepo.loadPizzas().onEach {
+              println("loaded pizza with toppings: ${it.toppings()}")
               pizzaFactory.createUiPizza(it)
           }
         }

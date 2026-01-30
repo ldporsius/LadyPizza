@@ -2,6 +2,7 @@ package nl.codingwithlinda.ladypizza.core.domain.model.shopping_cart
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraMozzarellaCheese
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
@@ -96,6 +97,11 @@ class ShoppingCartTest {
 
     @Test
     fun `test adding a drink to shopping cart`(){
-        
+        val drink = Drink(
+            id = "mineral_water",
+            price = 1.0
+        )
+        shoppingCart.buyDrink(drink)
+        assertThat(shoppingCart.total()).isEqualTo( 1.0 )
     }
 }

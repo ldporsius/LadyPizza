@@ -23,31 +23,17 @@ class PizzaFactoryUi(
     }
 
     fun createUiPizza(pizza: Pizza){
-       pizzaUi(pizza)?.let {
-            menu.add(it)
+       pizzaUi(pizza)?.let {pui ->
+           println("-- PizzaFactoryUi created pizzaUI from pizza: ${pizza.id} with toppings: ${pizza.toppings()}. pui_desc: ${pui.description()}")
+            menu.add(pui)
             menuObservable.update {
                 menu.toList()
             }
         }
     }
-    fun create(pizzaDto: PizzaDto){
-
-        val pizza = pizzaFromDto(pizzaDto)
-        println("-- PizzaFactoryUi created pizza from dto: ${pizza?.id()}")
-        if(pizza != null){
-            menu.add(pizza)
-        }
-        menuObservable.update {
-            menu.toList()
-        }
-
-    }
-
     private fun pizzaUi(pizza: Pizza): PizzaUi?{
         return MyPizza(
-            pizza = Pizza(
-                id = pizza.id
-            ).apply {
+            pizza = pizza.apply {
                 setPrice(priceRepo.getPrice(pizza.id))
             },
             myname = {
@@ -56,22 +42,7 @@ class PizzaFactoryUi(
             imageUrl = ProductImageBuffer.getImageByProductId(pizza.id)?.imageUrl ?: ""
         )
     }
-    private fun pizzaFromDto(dto: PizzaDto): PizzaUi?{
-        return MyPizza(
-                    pizza = Pizza(
-                        id = dto.id
-                    ).apply {
-                        dto.ingredients.onEach {
-                            addTopping(it.toIngredient())
-                        }
-                        setPrice(priceRepo.getPrice(dto.id))
-                    },
-                    myname = {
-                        pizzaNames.getOrElse(dto.id, {UiText.DynamicText(dto.id)})
-                    },
-                    imageUrl = dto.image_url
-                )
-            }
+
 
 }
 
