@@ -39,7 +39,7 @@ class PizzaFactoryTest {
                 it.toDomain()
             }
                 .onEach {
-                pizzaFactory.createUiPizza(it)
+                pizzaFactory.addUiPizzaToMenu(it)
             }
         }
     }

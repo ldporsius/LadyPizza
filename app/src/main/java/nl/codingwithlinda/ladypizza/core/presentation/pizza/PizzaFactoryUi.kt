@@ -20,16 +20,19 @@ class PizzaFactoryUi(
         menu.clear()
     }
 
-    fun createUiPizza(pizza: Pizza){
-       pizzaUi(pizza)?.let {pui ->
-           println("-- PizzaFactoryUi created pizzaUI from pizza: ${pizza.id} with toppings: ${pizza.toppings()}. pui_desc: ${pui.description()}")
+    fun createUiPizza(pizza: Pizza): PizzaUi{
+        return pizzaUi(pizza)
+    }
+    fun addUiPizzaToMenu(pizza: Pizza){
+       pizzaUi(pizza).let {pui ->
+          //println("-- PizzaFactoryUi created pizzaUI from pizza: ${pizza.id} with toppings: ${pizza.toppings()}. pui_desc: ${pui.description()}")
             menu.add(pui)
             menuObservable.update {
                 menu.toList()
             }
         }
     }
-    private fun pizzaUi(pizza: Pizza): PizzaUi?{
+    private fun pizzaUi(pizza: Pizza): PizzaUi{
         return MyPizza(
             pizza = pizza.apply {
                 setPrice(priceRepo.getPrice(pizza.id))

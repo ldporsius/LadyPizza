@@ -23,13 +23,11 @@ import nl.codingwithlinda.ladypizza.design.util.asString
 fun DrinkCard(
     drink: DrinkUi,
     productPricing: ProductPricing,
-    navToDetail: (String) -> Unit,
     modifier: Modifier = Modifier) {
     val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { navToDetail(drink.id) }
     ) {
         with(drink.image()){
             when(this){

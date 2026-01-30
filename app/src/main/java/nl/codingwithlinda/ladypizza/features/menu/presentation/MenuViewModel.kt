@@ -36,7 +36,7 @@ class MenuViewModel(
     init {
         viewModelScope.launch {
           pizzaRepo.loadPizzas().onEach {
-              pizzaFactory.createUiPizza(it)
+              pizzaFactory.addUiPizzaToMenu(it)
           }
         }
         viewModelScope.launch {
