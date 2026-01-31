@@ -7,14 +7,17 @@ import nl.codingwithlinda.ladypizza.application.di.AndroidAppModule
 
 class LadyPizzaApplication: Application() {
 
+
     companion object{
-        val appModule = AndroidAppModule()
+        lateinit var appModule: AndroidAppModule
     }
 
     override fun onCreate() {
         super.onCreate()
 
         Firebase.initialize(this)
+        appModule = AndroidAppModule(this)
+
     }
 
 }

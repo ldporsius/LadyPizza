@@ -20,7 +20,7 @@ class FireStoreExtraToppingsRepository(
         .document("toppings")
         .get()
         .addOnSuccessListener {
-            println("success")
+            println("successfully loaded extra toppings")
         }
         .addOnFailureListener {
             it.printStackTrace()
@@ -32,6 +32,7 @@ class FireStoreExtraToppingsRepository(
                 .toObject(ExtraToppingIdDto::class.java)
 
             val toppings = dto?.let { dto ->
+                println("loaded extra toppings: $dto")
                 dto.ids.map {
                     ExtraTopping(
                         id = it,

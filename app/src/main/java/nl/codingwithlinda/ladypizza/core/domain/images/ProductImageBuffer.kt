@@ -18,9 +18,12 @@ object ProductImageBuffer {
             )
         }
     }
+    @Synchronized
     fun getImageByProductId(productId: String): ProductImageXref?{
-        return productImageXrefs.firstOrNull {
-            it.productId  == productId
+        synchronized(lock) {
+            return productImageXrefs.firstOrNull {
+                it.productId == productId
+            }
         }
     }
 }

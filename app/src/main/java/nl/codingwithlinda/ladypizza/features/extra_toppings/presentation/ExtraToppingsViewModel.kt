@@ -22,8 +22,8 @@ class ExtraToppingsViewModel(
         viewModelScope.launch {
             repository.loadExtraToppings().map {top ->
                 ExtraToppingUi(top)
-            }.run {
-                _extraToppings.update {new ->
+            }.let{new ->
+                _extraToppings.update {
                     new
                 }
             }
