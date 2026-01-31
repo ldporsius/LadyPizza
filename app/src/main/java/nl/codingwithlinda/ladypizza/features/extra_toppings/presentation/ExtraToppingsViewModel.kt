@@ -7,10 +7,13 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
+import nl.codingwithlinda.ladypizza.core.domain.model.shopping_cart.ShoppingCart
 import nl.codingwithlinda.ladypizza.core.domain.repo.ExtraToppingsRepository
 
 class ExtraToppingsViewModel(
-    val repository: ExtraToppingsRepository
+    val repository: ExtraToppingsRepository,
+    val shoppingCart: ShoppingCart
 ): ViewModel() {
 
     private val _extraToppings = MutableStateFlow< List<ExtraToppingUi>>(emptyList())
@@ -28,5 +31,9 @@ class ExtraToppingsViewModel(
                 }
             }
         }
+    }
+
+    fun buyExtraTopping(toppingUi: ProductWithPricing){
+        shoppingCart.putInCart(toppingUi)
     }
 }

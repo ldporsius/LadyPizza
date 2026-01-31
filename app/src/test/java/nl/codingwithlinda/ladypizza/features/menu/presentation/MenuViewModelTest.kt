@@ -79,7 +79,7 @@ class MenuViewModelTest {
 
             val em1 = awaitItem()
             assertThat(em1).hasSize(1)
-            val price = em1.first().drink.price
+            val price = em1.first().drink.product.price(pricing)
             assertThat(price).isEqualTo(1.0)
 
             viewModel.putInCart(

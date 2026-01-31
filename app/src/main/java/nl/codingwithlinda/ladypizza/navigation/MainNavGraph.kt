@@ -35,7 +35,8 @@ fun MainNavGraph(modifier: Modifier = Modifier) {
                             factory = viewModelFactory {
                                 initializer {
                                     ExtraToppingsViewModel(
-                                        repository = LadyPizzaApplication.appModule.extraToppingsRepository
+                                        repository = LadyPizzaApplication.appModule.extraToppingsRepository,
+                                        shoppingCart = LadyPizzaApplication.shoppingCart
                                     )
                                 }
                             }

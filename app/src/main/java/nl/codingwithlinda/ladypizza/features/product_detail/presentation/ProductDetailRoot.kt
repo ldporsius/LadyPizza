@@ -42,7 +42,10 @@ fun ProductDetailRoot(
         detailViewmodel = detailViewmodel,
         extraToppings = {
             ExtraToppingsScreen(
-                extraToppings = extraToppingsViewModel.extraToppings.collectAsStateWithLifecycle().value
+                extraToppings = extraToppingsViewModel.extraToppings.collectAsStateWithLifecycle().value,
+                buyExtraTopping = {
+                    extraToppingsViewModel.buyExtraTopping(it)
+                }
             )},
         navBack = navBack
     )

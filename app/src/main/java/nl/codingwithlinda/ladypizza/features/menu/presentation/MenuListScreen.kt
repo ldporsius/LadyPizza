@@ -41,7 +41,6 @@ fun MenuListScreen(
     navToDetail: (String) -> Unit,
     modifier: Modifier = Modifier) {
 
-
     val priceRepo = LocalDrinkPriceRepo()
     val pizzaRepo = FirestorePizzaRepository()
     val drinksRepo = FireStoreDrinksRepo(priceRepo)
@@ -81,7 +80,10 @@ fun MenuListScreen(
             items(drinks) { drink ->
                 CardContainer {
                     DrinkCard(
-                        drink = drink.drink,
+                        drink = drink,
+                        addDrinkToCart = {
+                            menuViewModel.putInCart(drink.drink.product)
+                        },
                         productPricing = productPricing,
 
                     )

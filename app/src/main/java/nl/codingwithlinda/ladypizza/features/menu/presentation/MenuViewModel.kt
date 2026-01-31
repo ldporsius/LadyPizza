@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import nl.codingwithlinda.ladypizza.application.LadyPizzaApplication
 import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
+import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
 import nl.codingwithlinda.ladypizza.core.domain.model.drinks.DrinksRepo
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
@@ -62,6 +63,11 @@ class MenuViewModel(
         shoppingCart.putInCart(item)
     }
 
+    fun putDrinkInCart(item: Drink){
+        shoppingCart.putInCart(item)
+    }
+
+
     val cartState = shoppingCart.totalNumberOfItemFlow
 
     val drinks = _drinks.combine(cartState){
@@ -70,7 +76,7 @@ class MenuViewModel(
             DrinkShoppingCartState(
                 drink = it,
                 quantity = cart.find { pair ->
-                    pair.first == it.id
+                    pair.first == it.product.id
                 }?.second ?: 0
             )
         }
