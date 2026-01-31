@@ -1,6 +1,8 @@
 package nl.codingwithlinda.ladypizza.design.util
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
 sealed interface UiText {
     data class DynamicText(val text: String): UiText
@@ -15,3 +17,6 @@ fun UiText.asString(context: Context): String{
         }
     }
 }
+
+@Composable
+fun UiText.asString(): String = this.asString(LocalContext.current)

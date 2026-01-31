@@ -1,7 +1,9 @@
 package nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings
 
+import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
 
-class ExtraToppingsFactory {
+
+class ExtraToppingsPriceRepo: PriceRepo {
     /*
     bacon
     basil
@@ -11,10 +13,12 @@ class ExtraToppingsFactory {
         "basil" to .5,
         "cheese" to 1.0
     )
-    fun createExtraToppingFromId(id: String): ExtraTopping{
+    /*fun createExtraToppingFromId(id: String): ExtraTopping{
         return ExtraTopping(
             id = id,
             price = prices.getOrElse(id, { 0.0 })
         )
-    }
+    }*/
+
+    override fun getPrice(id: String): Double  = prices.getOrElse(id, { 0.0 })
 }

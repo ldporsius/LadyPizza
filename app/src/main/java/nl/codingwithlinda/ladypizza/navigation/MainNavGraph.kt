@@ -6,7 +6,7 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import nl.codingwithlinda.ladypizza.features.menu.presentation.MenuListScreen
-import nl.codingwithlinda.ladypizza.features.product_detail.ProductDetailScreen
+import nl.codingwithlinda.ladypizza.features.product_detail.presentation.ProductDetailScreen
 
 @Composable
 fun MainNavGraph(modifier: Modifier = Modifier) {

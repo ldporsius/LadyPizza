@@ -1,4 +1,4 @@
-package nl.codingwithlinda.ladypizza.features.product_detail
+package nl.codingwithlinda.ladypizza.features.product_detail.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -6,11 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -23,34 +30,21 @@ import nl.codingwithlinda.ladypizza.core.data.pizza.repo.FireStorePizzaDetailRep
 import nl.codingwithlinda.ladypizza.design.util.ToImage
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.asString
-import nl.codingwithlinda.ladypizza.features.product_detail.ProductDetailViewModel.Companion.KEY_PIZZA_ID
+import nl.codingwithlinda.ladypizza.features.product_detail.presentation.ProductDetailViewModel
+import nl.codingwithlinda.ladypizza.features.product_detail.presentation.ProductDetailViewModel.Companion.KEY_PIZZA_ID
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(
-    key: String,
+    detailViewmodel: ProductDetailViewModel,
+    extraToppings: @Composable () -> Unit,
     navBack: () -> Unit,
     modifier: Modifier = Modifier) {
 
-    val detailRepo = FireStorePizzaDetailRepository()
-
-    val detailViewmodel = viewModel<ProductDetailViewModel>(
-        factory = viewModelFactory {
-            initializer {
-                ProductDetailViewModel(
-                    savedStateHandle = createSavedStateHandle().apply {
-                        this.set(KEY_PIZZA_ID, key)
-                    },
-                    detailRepository = detailRepo
-                )
-            }
-        }
-    )
-
-    LaunchedEffect(key) {
-        detailViewmodel.savedStateHandle[KEY_PIZZA_ID] = key
-    }
+   var showBottomSheet by remember { mutableStateOf(false) }
 
     val pizza = detailViewmodel.mPizza.collectAsStateWithLifecycle().value
+
     val context = LocalContext.current
     Box(modifier = modifier.safeContentPadding()) {
         Column {
@@ -74,7 +68,17 @@ fun ProductDetailScreen(
                 }
                 Text(pzz.name().asString(context))
             }
+            Button(onClick = { showBottomSheet = true }) {
+                Text("Extra toppings")
+            }
 
+        }
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = { showBottomSheet = false },
+            ) {
+                extraToppings()
+            }
         }
     }
 }

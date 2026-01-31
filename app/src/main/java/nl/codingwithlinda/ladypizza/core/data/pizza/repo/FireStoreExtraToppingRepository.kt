@@ -8,8 +8,11 @@ import kotlinx.coroutines.withContext
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.ExtraToppingIdDto
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraTopping
 import nl.codingwithlinda.ladypizza.core.domain.repo.ExtraToppingsRepository
+import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
 
-class FireStoreExtraToppingsRepository: ExtraToppingsRepository {
+class FireStoreExtraToppingsRepository(
+  private val priceRepo: PriceRepo
+): ExtraToppingsRepository {
 
     val db = Firebase.firestore
 
@@ -28,11 +31,11 @@ class FireStoreExtraToppingsRepository: ExtraToppingsRepository {
             val dto = task.await()
                 .toObject(ExtraToppingIdDto::class.java)
 
-            val toppings = dto?.let {
-                it.ids.map {
+            val toppings = dto?.let { dto ->
+                dto.ids.map {
                     ExtraTopping(
                         id = it,
-                        price = 0.0
+                        price = priceRepo.getPrice(it)
                     )
                 }
             }

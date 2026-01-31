@@ -5,7 +5,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.PizzaDto
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.toDomain
-import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppingsFactory
+import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraTopping
+import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppingsPriceRepo
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
@@ -23,8 +24,7 @@ class PizzaFactoryTest {
     private val dollarPricing = DollarProductPricing(.5)
     private lateinit var pizzaFactory: PizzaFactoryUi
 
-    private val extraToppings = ExtraToppingsFactory()
-    private val extraMozzarellaCheese = extraToppings.createExtraToppingFromId("cheese")
+    private val extraMozzarellaCheese = ExtraTopping("cheese", 1.0)
 
 
     private val dtos = listOf(
