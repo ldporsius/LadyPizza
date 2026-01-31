@@ -33,7 +33,8 @@ class ShoppingCartTest {
     @Test
     fun `test shopping cart has two pizzas of the same kind`(){
         val myPizza = PizzaFactory.addExtraTopping(pizza, extraCheese)
-        shoppingCart.buyPizza(myPizza, 2)
+        shoppingCart.putInCart(myPizza,)
+        shoppingCart.putInCart(myPizza,)
 
         val itemsInCart = shoppingCart.items()
 
@@ -44,7 +45,8 @@ class ShoppingCartTest {
     @Test
     fun `test shopping cart has two pizzas of the same kind grouped`(){
         val myPizza = PizzaFactory.addExtraTopping(pizza, extraCheese)
-        shoppingCart.buyPizza(myPizza, 2)
+        shoppingCart.putInCart(myPizza, )
+        shoppingCart.putInCart(myPizza, )
 
         val itemsInCart = shoppingCart.itemsGrouped()
 
@@ -55,7 +57,8 @@ class ShoppingCartTest {
     @Test
     fun `test shopping cart has two pizzas of the same kind and one other`(){
         val myPizza = PizzaFactory.addExtraTopping(pizza, extraCheese)
-        shoppingCart.buyPizza(myPizza, 2)
+        shoppingCart.putInCart(myPizza,)
+        shoppingCart.putInCart(myPizza,)
 
         val thirdPizza = Pizza(id = "margherita").apply { setPrice(10.0)}
         val thirdPizza2 = PizzaFactory
@@ -63,7 +66,7 @@ class ShoppingCartTest {
             .addExtraTopping(extraCheese)
 
 
-        shoppingCart.buyPizza(thirdPizza2, 1)
+        shoppingCart.putInCart(thirdPizza2,)
 
         val itemsInCart = shoppingCart.itemsGrouped()
 
@@ -80,7 +83,7 @@ class ShoppingCartTest {
     @Test
     fun `test shopping cart calculates price in dollars correctly`(){
         val myPizza = PizzaFactory.addExtraTopping(pizza, extraCheese)
-        shoppingCart.buyPizza(myPizza, 1)
+        shoppingCart.putInCart(myPizza, )
 
         val itemsInCart = shoppingCart.itemsGrouped()
 
@@ -102,7 +105,7 @@ class ShoppingCartTest {
             id = "mineral_water",
             price = 1.0
         )
-        shoppingCart.buyDrink(drink)
+        shoppingCart.putInCart(drink)
         assertThat(shoppingCart.total()).isEqualTo( 1.0 )
     }
 }

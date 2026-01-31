@@ -17,15 +17,8 @@ class ShoppingCart(
         it.id
     }
 
-
-    fun buyPizza(pizza: PizzaWithToppings, amount: Int) {
-        repeat(amount) {
-            _items.add(pizza)
-        }
-    }
-
-    fun buyDrink(drink: Drink){
-        _items.add(drink)
+    fun putInCart(item: ProductWithPricing){
+        _items.add(item)
     }
 
     fun total(): Double{

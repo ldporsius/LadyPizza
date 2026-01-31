@@ -13,7 +13,6 @@ import nl.codingwithlinda.ladypizza.core.domain.repo.ExtraToppingsRepository
 import nl.codingwithlinda.ladypizza.features.extra_toppings.presentation.ExtraToppingsViewModel
 
 class AndroidAppModule(
-    val application: Application
 ): AppModule {
 
     val extraToppingsPriceRepo = ExtraToppingsPriceRepo()
@@ -21,6 +20,7 @@ class AndroidAppModule(
         get() = FireStoreExtraToppingsRepository(
             extraToppingsPriceRepo
         )
+
 
 }
 

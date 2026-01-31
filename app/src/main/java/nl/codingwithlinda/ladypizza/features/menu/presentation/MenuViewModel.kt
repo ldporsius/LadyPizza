@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import nl.codingwithlinda.ladypizza.application.LadyPizzaApplication
+import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.drinks.DrinksRepo
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.Currency
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
@@ -49,6 +51,10 @@ class MenuViewModel(
                 }
             }
         }
+    }
+
+    fun putInCart(item: ProductWithPricing){
+        LadyPizzaApplication.shoppingCart.putInCart(item)
     }
 
 
