@@ -24,6 +24,7 @@ val sauceIngredientsUi = mapOf<String, UiText>(
     "cream" to UiText.StringResourceText(R.string.cream),
 )
 val cheeseIngredientsUi = mapOf<String, UiText>(
+    "cheese" to UiText.StringResourceText(R.string.mozzarella_cheese),
     "mozzarella_cheese" to UiText.StringResourceText(R.string.mozzarella_cheese),
     "gorgonzola" to UiText.StringResourceText(R.string.gorgonzola),
     "parmesan" to UiText.StringResourceText(R.string.parmesan),
@@ -39,12 +40,16 @@ val veggieIngredientsUi = mapOf<String, UiText>(
     "onion" to UiText.StringResourceText(R.string.onion),
     "corn" to UiText.StringResourceText(R.string.corn),
     "mushrooms" to UiText.StringResourceText(R.string.mushrooms),
+    "mashroom" to UiText.StringResourceText(R.string.mushrooms),
     "olives" to UiText.StringResourceText(R.string.olives),
+    "olive" to UiText.StringResourceText(R.string.olives),
     "bell_pepper" to UiText.StringResourceText(R.string.bell_pepper),
     "jalapenos" to UiText.StringResourceText(R.string.jalapenos),
     "red_chili_pepper" to UiText.StringResourceText(R.string.red_chili_pepper),
+    "chilli" to UiText.StringResourceText(R.string.red_chili_pepper),
     "garlic" to UiText.StringResourceText(R.string.garlic),
     "parsley" to UiText.StringResourceText(R.string.parsley),
+
 )
 val meatIngredientsUi = mapOf<String, UiText>(
     "pepperoni" to UiText.StringResourceText(R.string.pepperoni),

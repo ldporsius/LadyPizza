@@ -1,10 +1,18 @@
 package nl.codingwithlinda.ladypizza.features.extra_toppings.presentation
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import nl.codingwithlinda.ladypizza.design.util.ToImage
 import nl.codingwithlinda.ladypizza.design.util.asString
 
 @Composable
@@ -12,9 +20,21 @@ fun ExtraToppingsScreen(
     extraToppings: List<ExtraToppingUi>,
     modifier: Modifier = Modifier) {
 
-    LazyColumn(modifier = modifier){
+    LazyVerticalGrid (
+        columns = GridCells.Fixed(3),
+        modifier = modifier){
+
         items(extraToppings){
-            Text(it.name().asString())
+            Column(
+                modifier = Modifier.size(200.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                it.image.ToImage(
+                    modifier = Modifier.fillMaxWidth()
+                        .aspectRatio(1f)
+                )
+                Text(it.name().asString())
+            }
         }
     }
 }

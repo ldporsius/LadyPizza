@@ -13,7 +13,7 @@ class ExtraToppingUi(val product: ProductWithPricing){
     private val imageUrl = ProductImageBuffer.getImageByProductId(product.id)?.imageUrl ?: ""
     val image: UiImage = UiImage.UrlImage(imageUrl)
 
-    fun name(): UiText = product.id.toIngredientUi()
+    fun name(): UiText = product.id.replace("_extra", "").toIngredientUi()
 
     fun description(): List<UiText> = emptyList()
 
