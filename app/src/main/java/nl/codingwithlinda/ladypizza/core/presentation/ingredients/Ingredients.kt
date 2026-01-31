@@ -6,10 +6,7 @@ import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
-data class Ingredient(
-    override val id: String,
-    val toUI: ()-> UiText
-): Product
+
 
 
 fun String.toIngredientUi(): UiText{

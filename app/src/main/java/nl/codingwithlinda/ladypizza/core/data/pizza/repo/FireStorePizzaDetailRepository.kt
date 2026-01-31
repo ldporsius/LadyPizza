@@ -5,6 +5,8 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.PizzaDto
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.toDomain
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.repo.PizzaDetailRepository
 

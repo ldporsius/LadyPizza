@@ -1,7 +1,7 @@
 package nl.codingwithlinda.ladypizza.tests
 
-import nl.codingwithlinda.ladypizza.core.data.pizza.repo.PizzaDto
-import nl.codingwithlinda.ladypizza.core.data.pizza.repo.toDomain
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.PizzaDto
+import nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto.toDomain
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.repo.PizzaRepository
 

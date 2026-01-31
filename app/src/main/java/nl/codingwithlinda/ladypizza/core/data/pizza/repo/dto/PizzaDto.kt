@@ -1,4 +1,4 @@
-package nl.codingwithlinda.ladypizza.core.data.pizza.repo
+package nl.codingwithlinda.ladypizza.core.data.pizza.repo.dto
 
 import nl.codingwithlinda.ladypizza.core.domain.model.ingredients.Ingredient
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza

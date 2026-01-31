@@ -81,7 +81,7 @@ fun MenuListScreen(
                     DrinkCard(
                         drink = drink,
                         productPricing = productPricing,
-                        navToDetail = navToDetail
+
                     )
                 }
             }

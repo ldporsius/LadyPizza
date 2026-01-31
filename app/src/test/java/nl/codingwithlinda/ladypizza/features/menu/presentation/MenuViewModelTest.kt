@@ -68,7 +68,7 @@ class MenuViewModelTest {
 
             val em1 = awaitItem()
             assertThat(em1).hasSize(1)
-            val price = em1.first().price()
+            val price = em1.first().price
             assertThat(price).isEqualTo(1.0)
         }
     }

@@ -3,7 +3,7 @@ package nl.codingwithlinda.ladypizza.core.domain.model.shopping_cart
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
-import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.extraMozzarellaCheese
+import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppingsFactory
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
@@ -18,7 +18,7 @@ class ShoppingCartTest {
     lateinit var shoppingCart: ShoppingCart
 
     val pricing = EuroProductPricing()
-    val extraCheese = extraMozzarellaCheese
+    val extraCheese = ExtraToppingsFactory().createExtraToppingFromId("cheese")
 
 
     @Before
