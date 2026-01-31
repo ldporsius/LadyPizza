@@ -22,6 +22,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import nl.codingwithlinda.ladypizza.application.LadyPizzaApplication
 import nl.codingwithlinda.ladypizza.core.data.drinks.repo.FireStoreDrinksRepo
 import nl.codingwithlinda.ladypizza.core.data.drinks.repo.LocalDrinkPriceRepo
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.FirestorePizzaRepository
@@ -50,7 +51,8 @@ fun MenuListScreen(
             initializer {
                 MenuViewModel(
                     pizzaRepo = pizzaRepo,
-                    drinksRepo = drinksRepo
+                    drinksRepo = drinksRepo,
+                    shoppingCart = LadyPizzaApplication.shoppingCart
                 )
             }
         }
@@ -79,7 +81,7 @@ fun MenuListScreen(
             items(drinks) { drink ->
                 CardContainer {
                     DrinkCard(
-                        drink = drink,
+                        drink = drink.drink,
                         productPricing = productPricing,
 
                     )

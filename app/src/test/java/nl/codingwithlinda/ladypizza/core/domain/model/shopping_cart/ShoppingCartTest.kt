@@ -1,7 +1,16 @@
 package nl.codingwithlinda.ladypizza.core.domain.model.shopping_cart
 
+import app.cash.turbine.test
 import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
+import assertk.assertions.isNotSameInstanceAs
+import assertk.assertions.isSameInstanceAs
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraTopping
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppingsPriceRepo
@@ -107,5 +116,29 @@ class ShoppingCartTest {
         )
         shoppingCart.putInCart(drink)
         assertThat(shoppingCart.total()).isEqualTo( 1.0 )
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `test shopping cart is observable`() = runTest {
+        shoppingCart.cartObservable.test {
+            val em0 = awaitItem()
+            println("shopping cart em0: $em0")
+            assertThat(em0).isEmpty()
+
+            repeat(2) { r ->
+                shoppingCart.putInCart(
+                    Drink(
+                        id = "mineral_water",
+                        price = 1.0
+                    )
+                )
+                assertThat(shoppingCart.items()).hasSize(1 + r)
+
+                val em1 = awaitItem()
+                assertThat(em1).hasSize(1 + r)
+            }
+
+        }
     }
 }
