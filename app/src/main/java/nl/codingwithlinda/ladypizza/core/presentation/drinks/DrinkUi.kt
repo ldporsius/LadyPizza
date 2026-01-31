@@ -9,16 +9,6 @@ import nl.codingwithlinda.ladypizza.core.presentation.prices.symbol
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
-/*data class DrinkUi(
-    val id: String,
-    val name: ()-> UiText,
-    val image: () -> UiImage,
-    val price: Double
-){
-    fun priceUi(pricing: ProductPricing) : UiText{
-        return UiText.DynamicText(pricing.formatLocale(price = price))
-    }
-}*/
 class DrinkUi(val product: ProductWithPricing){
 
     private val imageUrl = ProductImageBuffer.getImageByProductId(product.id)?.imageUrl ?: ""
@@ -29,6 +19,6 @@ class DrinkUi(val product: ProductWithPricing){
     fun description(): List<UiText> = emptyList()
 
     fun priceUi(productPricing: ProductPricing): UiText =
-        UiText.DynamicText(productPricing.symbol() + product.price(productPricing).toString())
+        UiText.DynamicText(productPricing.formatLocale(price = product.price(productPricing)))
 
 }
