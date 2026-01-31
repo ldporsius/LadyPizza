@@ -6,9 +6,6 @@ import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
-
-
-
 fun String.toIngredientUi(): UiText{
     val allIngredient =
         sauceIngredientsUi
