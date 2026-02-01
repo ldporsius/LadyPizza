@@ -5,7 +5,9 @@ import kotlinx.coroutines.flow.update
 import nl.codingwithlinda.ladypizza.core.data.pizza.PizzaFactory
 import nl.codingwithlinda.ladypizza.core.data.pizza.repo.LocalPizzaPriceRepo
 import nl.codingwithlinda.ladypizza.core.domain.images.ProductImageBuffer
+import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraTopping
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
+import nl.codingwithlinda.ladypizza.core.domain.model.pizza.PizzaWithToppings
 import nl.codingwithlinda.ladypizza.core.domain.repo.PriceRepo
 import nl.codingwithlinda.ladypizza.design.util.UiText
 
@@ -20,7 +22,7 @@ class PizzaFactoryUi(
         menu.clear()
     }
 
-    fun createUiPizza(pizza: Pizza): PizzaUi{
+    fun createUiPizza(pizza: Pizza): MyPizza{
         return pizzaUi(pizza)
     }
     fun addUiPizzaToMenu(pizza: Pizza){
@@ -32,17 +34,29 @@ class PizzaFactoryUi(
             }
         }
     }
-    private fun pizzaUi(pizza: Pizza): PizzaUi{
+
+    fun addExtraToppingToMyPizza(pizza: MyPizza, topping: ExtraTopping): MyPizza{
+        val extras = addExtraTopping(pizza.pizza, topping)
         return MyPizza(
-            pizza = pizza.apply {
-                setPrice(priceRepo.getPrice(pizza.id))
-            },
+            pizza = extras,
+            myname = {pizza.name()},
+            imageUrl = ProductImageBuffer.getImageByProductId(pizza.pizzaId())?.imageUrl ?: ""
+        )
+    }
+    private fun pizzaUi(pizza: Pizza): MyPizza{
+        val pizzaWithToppings = PizzaWithToppings(pizza.apply {
+            setPrice(priceRepo.getPrice(pizza.id))
+        })
+        return MyPizza(
+            pizza = pizzaWithToppings,
             myname = {
                 pizzaNames.getOrElse(pizza.id, {UiText.DynamicText(pizza.id)})
             },
             imageUrl = ProductImageBuffer.getImageByProductId(pizza.id)?.imageUrl ?: ""
         )
     }
+
+
 
 
 }

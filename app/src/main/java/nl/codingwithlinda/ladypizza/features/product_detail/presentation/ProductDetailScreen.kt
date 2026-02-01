@@ -1,8 +1,10 @@
 package nl.codingwithlinda.ladypizza.features.product_detail.presentation
 
+import android.R.attr.onClick
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -21,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.util.fastJoinToString
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -45,9 +48,10 @@ fun ProductDetailScreen(
 
     val pizza = detailViewmodel.mPizza.collectAsStateWithLifecycle().value
 
-    val context = LocalContext.current
     Box(modifier = modifier.safeContentPadding()) {
-        Column {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
             IconButton(onClick = navBack) {
                 Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
             }
@@ -66,7 +70,16 @@ fun ProductDetailScreen(
                         }
                     }
                 }
-                Text(pzz.name().asString(context))
+                Text(pzz.name().asString())
+                Text(pzz.description().map {
+                    it.asString()
+                }.fastJoinToString ())
+
+                Text(pzz.extraToppings()
+                    .map {
+                       it.first + "x" + it.second.asString()
+                    }.fastJoinToString()
+                )
             }
             Button(onClick = { showBottomSheet = true }) {
                 Text("Extra toppings")

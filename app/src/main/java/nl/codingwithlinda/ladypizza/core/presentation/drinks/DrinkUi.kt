@@ -5,7 +5,6 @@ import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 import nl.codingwithlinda.ladypizza.core.presentation.ingredients.toIngredientUi
 import nl.codingwithlinda.ladypizza.core.presentation.prices.formatLocale
-import nl.codingwithlinda.ladypizza.core.presentation.prices.symbol
 import nl.codingwithlinda.ladypizza.design.util.UiImage
 import nl.codingwithlinda.ladypizza.design.util.UiText
 

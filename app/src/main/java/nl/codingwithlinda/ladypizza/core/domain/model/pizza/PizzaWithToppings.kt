@@ -5,7 +5,7 @@ import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppin
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.ProductPricing
 
 class PizzaWithToppings(
-    private val pizza: Pizza,
+    val pizza: Pizza,
 ): ProductWithPricing {
 
     override val id: String

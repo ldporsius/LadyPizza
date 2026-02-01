@@ -16,23 +16,11 @@ import nl.codingwithlinda.ladypizza.features.product_detail.presentation.Product
 @Composable
 fun ProductDetailRoot(
     key: String,
+    detailViewmodel: ProductDetailViewModel,
     extraToppingsViewModel: ExtraToppingsViewModel,
     navBack: () -> Unit
 ) {
-    val detailRepo = FireStorePizzaDetailRepository()
 
-    val detailViewmodel = viewModel<ProductDetailViewModel>(
-        factory = viewModelFactory {
-            initializer {
-                ProductDetailViewModel(
-                    savedStateHandle = createSavedStateHandle().apply {
-                        this.set(KEY_PIZZA_ID, key)
-                    },
-                    detailRepository = detailRepo
-                )
-            }
-        }
-    )
 
     LaunchedEffect(key) {
         detailViewmodel.savedStateHandle[KEY_PIZZA_ID] = key
@@ -43,8 +31,8 @@ fun ProductDetailRoot(
         extraToppings = {
             ExtraToppingsScreen(
                 extraToppings = extraToppingsViewModel.extraToppings.collectAsStateWithLifecycle().value,
-                buyExtraTopping = {
-                    extraToppingsViewModel.buyExtraTopping(it)
+                buyExtraTopping = {topping ->
+                   detailViewmodel.buyExtraTopping(topping)
                 }
             )},
         navBack = navBack

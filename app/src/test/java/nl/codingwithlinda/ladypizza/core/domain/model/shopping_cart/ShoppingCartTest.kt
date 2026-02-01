@@ -15,6 +15,7 @@ import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraTopping
 import nl.codingwithlinda.ladypizza.core.domain.model.extra_toppings.ExtraToppingsPriceRepo
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.Pizza
+import nl.codingwithlinda.ladypizza.core.domain.model.pizza.PizzaWithToppings
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.DollarProductPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.prices.EuroProductPricing
 import nl.codingwithlinda.ladypizza.core.presentation.pizza.PizzaFactoryUi
@@ -24,7 +25,7 @@ import org.junit.Test
 class ShoppingCartTest {
 
     lateinit var PizzaFactory: PizzaFactoryUi
-    lateinit var pizza: Pizza
+    lateinit var pizza: PizzaWithToppings
     lateinit var shoppingCart: ShoppingCart
 
     val pricing = EuroProductPricing()
@@ -35,7 +36,10 @@ class ShoppingCartTest {
     fun setup(){
 
         PizzaFactory = PizzaFactoryUi()
-        pizza = Pizza(id = "margherita").apply { setPrice(10.0)}
+        val basepizza = Pizza(id = "margherita").apply { setPrice(10.0)}
+        pizza = PizzaFactory.createUiPizza(basepizza).pizza.apply {
+            pizza.setPrice(10.0)
+        }
         shoppingCart = ShoppingCart(pricing)
     }
 
@@ -69,13 +73,14 @@ class ShoppingCartTest {
         shoppingCart.putInCart(myPizza,)
         shoppingCart.putInCart(myPizza,)
 
-        val thirdPizza = Pizza(id = "margherita").apply { setPrice(10.0)}
-        val thirdPizza2 = PizzaFactory
-            .addExtraTopping(thirdPizza, extraCheese)
+        val thirdPizza = Pizza(id = "margherita")
+        val thirdPizza2 = PizzaFactory.createUiPizza(thirdPizza).pizza.apply {
+            pizza.setPrice(10.0)}
+            .addExtraTopping(extraCheese)
             .addExtraTopping(extraCheese)
 
 
-        shoppingCart.putInCart(thirdPizza2,)
+        shoppingCart.putInCart(thirdPizza2)
 
         val itemsInCart = shoppingCart.itemsGrouped()
 

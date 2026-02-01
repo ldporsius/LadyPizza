@@ -6,10 +6,8 @@ import nl.codingwithlinda.ladypizza.core.domain.model.pizza.PizzaWithToppings
 
 abstract class PizzaFactory {
 
-    fun addExtraTopping(pizza: Pizza, topping: ExtraTopping): PizzaWithToppings {
-        return PizzaWithToppings(
-            pizza = pizza,
-        ).apply {
+    fun addExtraTopping(pizza: PizzaWithToppings, topping: ExtraTopping): PizzaWithToppings {
+        return pizza.apply {
             addExtraTopping(topping)
         }
     }

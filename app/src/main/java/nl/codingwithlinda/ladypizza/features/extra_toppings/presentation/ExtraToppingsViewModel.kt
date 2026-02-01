@@ -32,8 +32,4 @@ class ExtraToppingsViewModel(
             }
         }
     }
-
-    fun buyExtraTopping(toppingUi: ProductWithPricing){
-        shoppingCart.putInCart(toppingUi)
-    }
 }

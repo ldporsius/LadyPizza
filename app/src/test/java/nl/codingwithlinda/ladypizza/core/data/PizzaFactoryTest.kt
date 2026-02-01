@@ -55,7 +55,7 @@ class PizzaFactoryTest {
     @Test
     fun `test create pizza with extra cheese - calculate total costs`() = runBlocking{
         val pizzaUi = pizzaFactory.menuObservable.first().first()
-        val basicPrice = pizzaUi.pizza.getPrice(euroProductPricing)
+        val basicPrice = pizzaUi.pizza.price(euroProductPricing)
         val extra = extraMozzarellaCheese
         val pizzaXtra = pizzaFactory.addExtraTopping(pizzaUi.pizza, extra)
 
@@ -66,7 +66,7 @@ class PizzaFactoryTest {
     @Test
     fun `test create pizza with extra cheese - calculate total costs in dollars`() = runBlocking{
         val pizzaUi = pizzaFactory.menuObservable.first().first()
-        val basicPrice = pizzaUi.pizza.getPrice(euroProductPricing)
+        val basicPrice = pizzaUi.pizza.price(euroProductPricing)
         val extra = extraMozzarellaCheese
         val pizzaXtra = pizzaFactory.addExtraTopping(pizzaUi.pizza, extra)
 
