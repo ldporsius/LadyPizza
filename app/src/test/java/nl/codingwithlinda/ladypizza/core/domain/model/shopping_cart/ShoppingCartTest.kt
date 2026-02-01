@@ -118,6 +118,34 @@ class ShoppingCartTest {
         assertThat(shoppingCart.total()).isEqualTo( 1.0 )
     }
 
+    @Test
+    fun `test remove a drink from shopping cart`(){
+        val drink = Drink(
+            id = "mineral_water",
+            price = 1.0
+        )
+        shoppingCart.putInCart(drink)
+        assertThat(shoppingCart.total()).isEqualTo( 1.0 )
+
+        shoppingCart.removeFromCart(drink)
+        assertThat(shoppingCart.items()).isEmpty()
+    }
+
+    @Test
+    fun `test remove all drinks of one kind from shopping cart`(){
+        val drink = Drink(
+            id = "mineral_water",
+            price = 1.0
+        )
+        repeat(2) {
+            shoppingCart.putInCart(drink)
+        }
+       assertThat(shoppingCart.items().size).isEqualTo(2)
+
+        shoppingCart.removeAllFromCart(drink)
+        assertThat(shoppingCart.items()).isEmpty()
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `test shopping cart is observable`() = runTest {
@@ -138,7 +166,6 @@ class ShoppingCartTest {
                 val em1 = awaitItem()
                 assertThat(em1).hasSize(1 + r)
             }
-
         }
     }
 }

@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import nl.codingwithlinda.ladypizza.application.LadyPizzaApplication.Companion.shoppingCart
 import nl.codingwithlinda.ladypizza.core.domain.model.ProductWithPricing
 import nl.codingwithlinda.ladypizza.core.domain.model.drinks.Drink
 import nl.codingwithlinda.ladypizza.core.domain.model.pizza.PizzaWithToppings
@@ -28,6 +29,20 @@ class ShoppingCart(
         _items.add(item)
         _cartObservable.update {
            _items.toList()
+        }
+    }
+
+    fun removeFromCart(item: ProductWithPricing){
+        _items.remove(item)
+        _cartObservable.update {
+            _items.toList()
+        }
+    }
+
+    fun removeAllFromCart(item: ProductWithPricing){
+        val number = totalNumberOfItem(item.id)
+        repeat(number) {
+            removeFromCart(item)
         }
     }
 

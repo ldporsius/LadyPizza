@@ -63,8 +63,12 @@ class MenuViewModel(
         shoppingCart.putInCart(item)
     }
 
-    fun putDrinkInCart(item: Drink){
-        shoppingCart.putInCart(item)
+    fun removeFromCart(item: ProductWithPricing){
+        shoppingCart.removeFromCart(item)
+    }
+
+    fun removeAllFromCart(item: ProductWithPricing){
+       shoppingCart.removeAllFromCart(item)
     }
 
 
